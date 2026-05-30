@@ -13,11 +13,13 @@ const AnimatedSection = ({ children, className = "", delay = 0 }: Props) => {
   return (
     <div
       ref={ref}
-      className={`transition-all duration-1000 ease-out ${className}`}
+      className={`transition-opacity transition-transform duration-1000 ease-out ${className}`}
       style={{
         opacity: isVisible ? 1 : 0,
         transform: isVisible ? "translateY(0)" : "translateY(40px)",
+        visibility: isVisible ? "visible" : "hidden",
         transitionDelay: `${delay}ms`,
+        willChange: "transform, opacity",
       }}
     >
       {children}

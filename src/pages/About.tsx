@@ -1,95 +1,213 @@
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import AboutServicesList from "@/components/AboutServicesList";
 import AnimatedSection from "@/components/AnimatedSection";
-import founderImg from "@/assets/founder.jpg";
+import PageCta from "@/components/PageCta";
+import PageHero from "@/components/PageHero";
+import TeamMembers from "@/components/TeamMembers";
+import WorkInShowcase from "@/components/WorkInShowcase";
+import project4 from "@/assets/project-4.jpg";
 import studioImg from "@/assets/about-studio.jpg";
 
-const timeline = [
-  { year: "2012", title: "Studio Founded", desc: "Established in Mumbai with a vision for intentional design." },
-  { year: "2015", title: "First Major Commission", desc: "The Coastal Residence — our first nationally recognized project." },
-  { year: "2018", title: "Interiors Division", desc: "Expanded services to include full interior design and curation." },
-  { year: "2021", title: "Turnkey Solutions", desc: "End-to-end project delivery, from concept to handover." },
-  { year: "2024", title: "12 Years of Craft", desc: "Over 80 projects completed across residential and commercial spaces." },
+gsap.registerPlugin(ScrollTrigger);
+
+const philosophy = [
+  {
+    title: "Listen",
+    description: "We understand client vision and requirements carefully, then shape the design around those priorities.",
+  },
+  {
+    title: "Anticipate",
+    description: "We design spaces that support future growth, flexibility, and long-term comfort.",
+  },
+  {
+    title: "Empathize",
+    description: "Every decision prioritizes user experience, from circulation to material selections.",
+  },
+  {
+    title: "Collaborate",
+    description: "We work closely with consultants, engineers, and contractors for seamless execution.",
+  },
 ];
 
-const About = () => (
-  <div className="pt-20">
-    {/* Hero */}
-    <section className="py-24 lg:py-36 px-6 lg:px-12">
-      <div className="max-w-7xl mx-auto">
-        <AnimatedSection>
-          <p className="text-xs tracking-[0.2em] uppercase text-muted-foreground mb-6">About Us</p>
-          <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-foreground leading-[1.15] max-w-3xl">
-            Design Is How We Give Shape to Meaning
-          </h1>
-        </AnimatedSection>
-        <AnimatedSection delay={200}>
-          <p className="mt-10 text-muted-foreground leading-relaxed max-w-2xl text-lg">
-            The Design Atelier is a multidisciplinary studio rooted in the belief that architecture should serve life — quietly, beautifully, and with lasting purpose.
-          </p>
-        </AnimatedSection>
-      </div>
-    </section>
+const About = () => {
+  const pageRef = useRef<HTMLDivElement>(null);
 
-    {/* Philosophy */}
-    <section className="py-24 lg:py-36 px-6 lg:px-12 bg-card">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-        <AnimatedSection>
-          <div className="aspect-[4/3] overflow-hidden">
-            <img src={studioImg} alt="Design Atelier workspace" loading="lazy" width={800} height={600} className="w-full h-full object-cover" />
-          </div>
-        </AnimatedSection>
-        <AnimatedSection delay={200}>
-          <h2 className="font-serif text-3xl md:text-4xl text-foreground mb-8">Our Philosophy</h2>
-          <div className="space-y-6 text-muted-foreground leading-relaxed">
-            <p>We design with restraint. Every element earns its place — nothing is added without purpose, nothing is removed without consequence.</p>
-            <p>Our work sits at the intersection of architecture and craft, where materiality meets emotion and structure becomes poetry.</p>
-            <p>We believe the best spaces are those that feel inevitable — as if they could not have been any other way.</p>
-          </div>
-        </AnimatedSection>
-      </div>
-    </section>
+  useEffect(() => {
+    if (!pageRef.current) return;
 
-    {/* Founder */}
-    <section className="py-24 lg:py-36 px-6 lg:px-12">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-        <AnimatedSection>
-          <p className="text-xs tracking-[0.2em] uppercase text-muted-foreground mb-6">The Founder</p>
-          <h2 className="font-serif text-3xl md:text-4xl text-foreground mb-8">Ananya Sharma</h2>
-          <div className="space-y-6 text-muted-foreground leading-relaxed">
-            <p>With over 15 years of experience spanning residential, hospitality, and cultural projects, Ananya founded The Design Atelier with a singular purpose: to create spaces that honor how people truly live.</p>
-            <p>Trained at the School of Planning and Architecture, her work draws from a deep respect for context, craft, and the poetry of everyday life.</p>
-          </div>
-        </AnimatedSection>
-        <AnimatedSection delay={200}>
-          <div className="aspect-[3/4] overflow-hidden max-w-md ml-auto">
-            <img src={founderImg} alt="Ananya Sharma, Founder" loading="lazy" width={600} height={800} className="w-full h-full object-cover" />
-          </div>
-        </AnimatedSection>
-      </div>
-    </section>
+    const context = gsap.context(() => {
+      gsap.utils.toArray<HTMLElement>("[data-gsap-section]").forEach((section) => {
+        gsap.fromTo(
+          section,
+          { autoAlpha: 0, y: 56 },
+          {
+            autoAlpha: 1,
+            y: 0,
+            duration: 1,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: section,
+              start: "top 78%",
+            },
+          },
+        );
+      });
 
-    {/* Timeline */}
-    <section className="py-24 lg:py-36 px-6 lg:px-12 bg-card">
-      <div className="max-w-3xl mx-auto">
-        <AnimatedSection>
-          <p className="text-xs tracking-[0.2em] uppercase text-muted-foreground mb-3 text-center">Our Journey</p>
-          <h2 className="font-serif text-3xl md:text-4xl text-foreground text-center mb-16">Milestones</h2>
-        </AnimatedSection>
-        <div className="space-y-0">
-          {timeline.map((t, i) => (
-            <AnimatedSection key={i} delay={i * 100}>
-              <div className="flex gap-8 lg:gap-12 py-8 border-b border-border">
-                <span className="font-serif text-2xl text-accent min-w-[80px]">{t.year}</span>
-                <div>
-                  <h3 className="font-serif text-lg mb-2">{t.title}</h3>
-                  <p className="text-muted-foreground text-sm">{t.desc}</p>
-                </div>
-              </div>
-            </AnimatedSection>
-          ))}
+      gsap.utils.toArray<HTMLElement>("[data-gsap-item]").forEach((item, index) => {
+        gsap.fromTo(
+          item,
+          { autoAlpha: 0, y: 34 },
+          {
+            autoAlpha: 1,
+            y: 0,
+            duration: 0.8,
+            delay: (index % 4) * 0.05,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: item,
+              start: "top 84%",
+            },
+          },
+        );
+      });
+
+      gsap.utils.toArray<HTMLElement>("[data-gsap-line]").forEach((line) => {
+        gsap.to(line, {
+          scaleX: 1,
+          duration: 1,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: line,
+            start: "top 88%",
+          },
+        });
+      });
+    }, pageRef);
+
+    return () => context.revert();
+  }, []);
+
+  return (
+    <div ref={pageRef} className="pt-20">
+      <PageHero
+        label="About Us"
+        title="Designing Spaces With Clarity & Character"
+        description="A studio that combines architecture, interiors, and thoughtful project delivery to create spaces that feel elegant, functional, and authentic."
+        imgSrc={studioImg}
+      />
+
+      <section className="py-24 lg:py-36 px-6 lg:px-12" data-gsap-section>
+        <div className="max-w-7xl mx-auto grid gap-12 lg:grid-cols-[0.8fr,1.2fr] lg:gap-20">
+          <AnimatedSection>
+            <p className="text-xs tracking-[0.2em] uppercase text-muted-foreground mb-6">About Us</p>
+            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-foreground leading-[1.1]">
+              Designing Spaces With Clarity & Character
+            </h1>
+          </AnimatedSection>
+          <AnimatedSection delay={200}>
+            <div className="space-y-6 border-l border-border pl-8 text-muted-foreground leading-relaxed text-lg">
+              <p>
+                The Design Atelier is an architecture and interior design studio based in Nashik and Mumbai, focused on creating spaces that feel elegant, functional, and authentic.
+              </p>
+              <p>
+                Founded by Ar. Aditya Anil Mulay, the studio brings together years of professional experience, technical understanding, and a deep appreciation for thoughtful design.
+              </p>
+              <p>
+                Our work is driven by the belief that good design is not about trends - it is about creating spaces that truly work for the people using them.
+              </p>
+            </div>
+          </AnimatedSection>
         </div>
+      </section>
+
+      <section className="py-24 lg:py-36 px-6 lg:px-12" data-gsap-section>
+        <div className="max-w-7xl mx-auto">
+          <AnimatedSection>
+            <p className="text-xs tracking-[0.2em] uppercase text-muted-foreground mb-6">Our Philosophy</p>
+            <h2 className="font-serif text-3xl md:text-4xl text-foreground mb-8">Design Thinking That Feels Right</h2>
+            <p className="max-w-3xl text-muted-foreground leading-relaxed">
+              Every project is different. Our thinking remains the same: clarity, long-term value, and human-centered design guide every decision.
+            </p>
+          </AnimatedSection>
+
+          <div className="mt-14 grid gap-x-10 gap-y-8 md:grid-cols-2 lg:grid-cols-4">
+            {philosophy.map((item, index) => (
+              <AnimatedSection key={index} delay={index * 120}>
+                <div className="border-t border-border pt-6" data-gsap-item>
+                  <p className="text-xs tracking-[0.2em] uppercase text-muted-foreground mb-5">{item.title}</p>
+                  <p className="text-muted-foreground leading-relaxed">{item.description}</p>
+                </div>
+              </AnimatedSection>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-24 lg:py-36 px-6 lg:px-12" data-gsap-section>
+        <div className="max-w-7xl mx-auto">
+          <AnimatedSection>
+            <p className="text-xs tracking-[0.2em] uppercase text-muted-foreground mb-6">Expertise</p>
+            <h2 className="font-serif text-3xl md:text-4xl text-foreground mb-8">Focused Skills for Every Project</h2>
+            <p className="max-w-3xl text-muted-foreground leading-relaxed">
+              We bring architecture, interiors, documentation, and project coordination together to build spaces that work beautifully.
+            </p>
+          </AnimatedSection>
+
+          <div className="mt-16 grid gap-20">
+            <AboutServicesList />
+            <WorkInShowcase />
+          </div>
+        </div>
+      </section>
+
+      <section className="py-24 lg:py-36 px-6 lg:px-12 bg-card" data-gsap-section>
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+          <AnimatedSection>
+            <div className="group overflow-hidden">
+              <img src={studioImg} alt="Design Atelier workspace" loading="lazy" width={800} height={600} className="image-motion w-full h-full object-cover" />
+            </div>
+          </AnimatedSection>
+          <AnimatedSection delay={200}>
+            <p className="text-xs tracking-[0.2em] uppercase text-muted-foreground mb-6">Principal Architect</p>
+            <h2 className="font-serif text-3xl md:text-4xl text-foreground mb-8">Ar. Aditya Anil Mulay</h2>
+            <div className="space-y-4 text-muted-foreground leading-relaxed">
+              <p>
+                With over 16 years of professional experience, Ar. Aditya Mulay brings together global exposure, technical expertise, and a refined understanding of modern architectural practices.
+              </p>
+              <p>
+                He leads the studio with a focus on honest communication, clear design thinking, attention to detail, and long-term functionality.
+              </p>
+            </div>
+            <div className="mt-10 grid grid-cols-1 border-y border-border text-sm text-muted-foreground">
+              <div className="border-b border-border py-5">
+                COA - Council of Architecture, India | Registered Architect
+              </div>
+              <div className="border-b border-border py-5">
+                LEED Accredited Professional | IGBC Accredited Professional
+              </div>
+              <div className="py-5">
+                MBA - Environmental Management | PMP - Project Management Professional
+              </div>
+            </div>
+          </AnimatedSection>
+        </div>
+      </section>
+
+      <div data-gsap-section>
+        <TeamMembers />
       </div>
-    </section>
-  </div>
-);
+
+      <PageCta
+        title="Want to design a space that feels both beautiful and practical?"
+        description="We work with thoughtful clients to create architecture and interiors that are grounded in context, function, and long-term value."
+        buttonText="Schedule a Consultation"
+        buttonLink="/contact"
+        imgSrc={project4}
+      />
+    </div>
+  );
+};
 
 export default About;

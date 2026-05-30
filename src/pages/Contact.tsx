@@ -1,26 +1,43 @@
 import { useState } from "react";
 import { MapPin, Mail, Phone } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
+import PageCta from "@/components/PageCta";
+import PageHero from "@/components/PageHero";
+import aboutStudio from "@/assets/about-studio.jpg";
+
+const address =
+  "No. 9, Vanraj Harshad Apartment, Opp. Modakeshwar Tennis Court, Modakeshwar Housing Society, Indira Nagar, Nashik 42009";
+const mapSrc =
+  `https://www.google.com/maps?q=${encodeURIComponent(address)}&output=embed`;
 
 const Contact = () => {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Placeholder submit
     alert("Thank you for reaching out. We'll be in touch soon.");
     setForm({ name: "", email: "", message: "" });
   };
 
   return (
     <div className="pt-20">
+      <PageHero
+        label="Contact"
+        title="Let's talk about your next architecture or interior project"
+        description="Reach out to discuss a new home, workplace, hospitality venue, or renovation. We help create spaces that feel thoughtful, elegant, and easy to live in."
+        imgSrc={aboutStudio}
+      />
+
       <section className="py-24 lg:py-36 px-6 lg:px-12">
         <div className="max-w-7xl mx-auto">
           <AnimatedSection>
-            <p className="text-xs tracking-[0.2em] uppercase text-muted-foreground mb-6">Get in Touch</p>
+            <p className="text-xs tracking-[0.2em] uppercase text-muted-foreground mb-6">Contact Information</p>
             <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-foreground max-w-2xl">
-              Start Your Project
+              Let’s Create Something Meaningful Together
             </h1>
+            <p className="mt-8 text-muted-foreground max-w-2xl leading-relaxed">
+              Reach out to discuss your next project, request a consultation, or learn how we can help you transform your space with thoughtful architecture and interiors.
+            </p>
           </AnimatedSection>
         </div>
       </section>
@@ -52,7 +69,7 @@ const Contact = () => {
                 </label>
                 <textarea
                   required
-                  rows={4}
+                  rows={5}
                   value={form.message}
                   onChange={(e) => setForm({ ...form, message: e.target.value })}
                   className="w-full bg-transparent border-b border-border py-3 text-foreground focus:outline-none focus:border-accent transition-colors duration-300 text-sm resize-none"
@@ -74,15 +91,19 @@ const Contact = () => {
                 <div className="space-y-4 text-sm text-muted-foreground">
                   <div className="flex items-start gap-3">
                     <MapPin size={16} className="mt-0.5 text-accent" />
-                    <span>42 Design Quarter, Bandra West<br />Mumbai, Maharashtra 400050</span>
+                    <span>
+                      No. 9, Vanraj Harshad Apartment, Opp. Modakeshwar Tennis Court,
+                      <br /> Modakeshwar Housing Society, Indira Nagar,
+                      <br /> Nashik 42009
+                    </span>
                   </div>
                   <div className="flex items-center gap-3">
                     <Mail size={16} className="text-accent" />
-                    <span>hello@thedesignatelier.com</span>
+                    <span>hello@thedesignatelier.co.in</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <Phone size={16} className="text-accent" />
-                    <span>+91 98765 43210</span>
+                    <span>+91 9225 5363 55</span>
                   </div>
                 </div>
               </div>
@@ -96,14 +117,34 @@ const Contact = () => {
                 </div>
               </div>
 
-              {/* Map placeholder */}
-              <div className="aspect-[4/3] bg-muted flex items-center justify-center">
-                <span className="text-xs tracking-[0.15em] uppercase text-muted-foreground">Map</span>
+              <div className="space-y-6">
+                <h3 className="font-serif text-xl">Visit Us</h3>
+                <div className="aspect-[4/3] overflow-hidden rounded-[2rem] border border-border bg-background">
+                  <iframe
+                    title="The Design Atelier location"
+                    src={mapSrc}
+                    className="w-full h-full"
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                  />
+                </div>
+                <div className="rounded-3xl border border-border p-6 bg-muted text-sm text-muted-foreground">
+                  <p className="font-semibold text-foreground mb-3">Studio Address</p>
+                  <p>{address}</p>
+                </div>
               </div>
             </div>
           </AnimatedSection>
         </div>
       </section>
+
+      <PageCta
+        title="Need an expert design team on your next project?"
+        description="Book a conversation with us today and let's explore what your space can become together."
+        buttonText="Get in Touch"
+        buttonLink="/contact"
+        imgSrc={aboutStudio}
+      />
     </div>
   );
 };

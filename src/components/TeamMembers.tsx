@@ -1,0 +1,58 @@
+import AnimatedSection from "@/components/AnimatedSection";
+import founderImg from "@/assets/founder.jpg";
+import project2 from "@/assets/project-2.jpg";
+import project3 from "@/assets/project-3.jpg";
+
+const teamMembers = [
+  {
+    name: "Ar. Aditya Anil Mulay",
+    role: "Founder & Principal Architect",
+    description: "Leads design strategy, client direction, and project delivery with a focus on clarity and craft.",
+    imgSrc: founderImg,
+  },
+  {
+    name: "Nikita Sharma",
+    role: "Senior Interior Designer",
+    description: "Shapes thoughtful interiors with refined material palettes, spatial flow, and user comfort.",
+    imgSrc: project2,
+  },
+  {
+    name: "Rahul Deshmukh",
+    role: "Project Manager",
+    description: "Coordinates documentation, consultants, and site delivery to ensure timelines and quality.",
+    imgSrc: project3,
+  },
+];
+
+const TeamMembers = () => (
+  <section className="py-24 lg:py-36 px-6 lg:px-12 bg-card">
+    <div className="max-w-7xl mx-auto">
+      <AnimatedSection>
+        <p className="text-xs tracking-[0.2em] uppercase text-muted-foreground mb-6">Meet the Team</p>
+        <h2 className="font-serif text-3xl md:text-4xl text-foreground mb-12">A Small Team with Clear Design Focus</h2>
+      </AnimatedSection>
+
+      <div className="grid gap-10 md:grid-cols-3">
+        {teamMembers.map((member, index) => (
+          <AnimatedSection key={index} delay={index * 100}>
+            <article className="rounded-[2rem] border border-border bg-background/90 p-8 text-center shadow-xl shadow-black/5 transition-shadow duration-300 hover:shadow-black/10">
+              <div className="group mx-auto mb-8 h-40 w-40 overflow-hidden rounded-full border border-border bg-muted">
+                <img
+                  src={member.imgSrc}
+                  alt={member.name}
+                  loading="lazy"
+                  className="image-motion h-full w-full object-cover"
+                />
+              </div>
+              <h3 className="font-serif text-2xl text-foreground mb-2">{member.name}</h3>
+              <p className="text-sm font-medium text-muted-foreground mb-5">{member.role}</p>
+              <p className="text-sm leading-relaxed text-muted-foreground">{member.description}</p>
+            </article>
+          </AnimatedSection>
+        ))}
+      </div>
+    </div>
+  </section>
+);
+
+export default TeamMembers;
