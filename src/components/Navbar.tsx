@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
+import { siteImages } from "@/lib/siteImages";
 
 const links = [
   { to: "/", label: "Home" },
@@ -16,10 +17,11 @@ const Navbar = () => {
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-border shadow-sm">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+      <div className="w-full px-6 sm:px-8 lg:px-12">
         <div className="flex items-center justify-between h-20">
-          <Link to="/" className="font-serif text-xl tracking-wider text-foreground">
-            The Design Atelier
+          <Link to="/" className="flex w-1/2 max-w-[18rem] items-center sm:w-1/3 lg:w-1/4">
+            <img src={siteImages.logo} alt="The Design Atelier" loading="lazy" className="h-auto w-full max-h-16 object-contain object-left" />
+            <span className="sr-only">The Design Atelier</span>
           </Link>
 
           <div className="hidden md:flex items-center gap-10">
@@ -53,7 +55,7 @@ const Navbar = () => {
               <Link
                 key={link.to}
                 to={link.to}
-                className={`text-sm tracking-[0.15em] uppercase transition-colors duration-300 ${
+                className={`text-sm tracking-[0.15em] uppercase transition-colors duration-300 hover:text-accent ${
                   location.pathname === link.to ? "text-accent" : "text-muted-foreground"
                 }`}
               >

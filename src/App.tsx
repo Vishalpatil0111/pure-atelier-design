@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import SiteScrollReveal from "./components/SiteScrollReveal";
 import ScrollToTop from "./components/ScrollToTop";
 import Index from "./pages/Index";
 import About from "./pages/About";
@@ -23,6 +24,7 @@ const App = () => (
       <BrowserRouter>
         <ScrollToTop />
         <Navbar />
+        <SiteScrollReveal />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/about" element={<About />} />

@@ -3,7 +3,7 @@ import { MapPin, Mail, Phone } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
 import PageCta from "@/components/PageCta";
 import PageHero from "@/components/PageHero";
-import aboutStudio from "@/assets/about-studio.jpg";
+import { siteImages } from "@/lib/siteImages";
 
 const address =
   "No. 9, Vanraj Harshad Apartment, Opp. Modakeshwar Tennis Court, Modakeshwar Housing Society, Indira Nagar, Nashik 42009";
@@ -25,7 +25,7 @@ const Contact = () => {
         label="Contact"
         title="Let's talk about your next architecture or interior project"
         description="Reach out to discuss a new home, workplace, hospitality venue, or renovation. We help create spaces that feel thoughtful, elegant, and easy to live in."
-        imgSrc={aboutStudio}
+        imgSrc={siteImages.projects.turnkey.interiorEight}
       />
 
       <section className="py-24 lg:py-36 px-6 lg:px-12">
@@ -143,7 +143,7 @@ const Contact = () => {
         description="Book a conversation with us today and let's explore what your space can become together."
         buttonText="Get in Touch"
         buttonLink="/contact"
-        imgSrc={aboutStudio}
+        imgSrc={siteImages.projects.turnkey.interiorFour}
       />
     </div>
   );

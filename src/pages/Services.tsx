@@ -16,11 +16,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import AnimatedSection from "@/components/AnimatedSection";
 import PageCta from "@/components/PageCta";
 import PageHero from "@/components/PageHero";
-import heroImg from "@/assets/hero-architecture.jpg";
-import project1 from "@/assets/project-1.jpg";
-import project2 from "@/assets/project-2.jpg";
-import project3 from "@/assets/project-3.jpg";
-import project4 from "@/assets/project-4.jpg";
+import { siteImages } from "@/lib/siteImages";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -29,25 +25,25 @@ const services = [
     title: "Architecture Design",
     desc: "Designing buildings that are rooted in context, light, and livability across every scale.",
     details: ["Residential Design", "Commercial Spaces", "Hospitality Environments", "Institutional Planning"],
-    imgSrc: project1,
+    imgSrc: siteImages.projects.architecture.balajiAngan,
   },
   {
     title: "Interior Design",
     desc: "Curating interiors with clarity, material warmth, and enduring comfort for daily life.",
     details: ["Space Planning", "Material & Finish Selection", "Furniture Curation", "Lighting & Atmosphere"],
-    imgSrc: project2,
+    imgSrc: siteImages.projects.turnkey.interiorFour,
   },
   {
     title: "Turnkey Solutions",
     desc: "Managing every step from design development through construction administration and handover.",
     details: ["Construction Documentation", "Project Management", "Contractor Coordination", "Quality Assurance"],
-    imgSrc: project3,
+    imgSrc: siteImages.projects.turnkey.interiorThree,
   },
   {
     title: "Sustainable & Green Design",
     desc: "Integrating environmental thinking into every design decision, from materials to energy efficiency.",
     details: ["Passive Design Strategies", "Green Materials", "Energy Efficient Systems", "Certifications Support"],
-    imgSrc: project4,
+    imgSrc: siteImages.projects.architecture.cambridgeSchool,
   },
 ];
 
@@ -145,7 +141,7 @@ const Services = () => {
         label="Services"
         title="Full-Service Architecture, Interior, and Turnkey Solutions"
         description="We guide each project from concept through construction, combining thoughtful design, technical coordination, and practical delivery."
-        imgSrc={heroImg}
+        imgSrc={siteImages.home.slides[0]}
       />
 
       <section className="py-20 lg:py-32 px-6 lg:px-12">
@@ -248,7 +244,7 @@ const Services = () => {
         description="From early design to construction delivery, our team can help guide your next architecture or interior project with clarity and care."
         buttonText="Connect With Us"
         buttonLink="/contact"
-        imgSrc={heroImg}
+        imgSrc={siteImages.projects.architecture.sceneEight}
       />
     </div>
   );

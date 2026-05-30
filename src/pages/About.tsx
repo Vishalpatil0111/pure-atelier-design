@@ -7,8 +7,7 @@ import PageCta from "@/components/PageCta";
 import PageHero from "@/components/PageHero";
 import TeamMembers from "@/components/TeamMembers";
 import WorkInShowcase from "@/components/WorkInShowcase";
-import project4 from "@/assets/project-4.jpg";
-import studioImg from "@/assets/about-studio.jpg";
+import { siteImages } from "@/lib/siteImages";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -95,7 +94,7 @@ const About = () => {
         label="About Us"
         title="Designing Spaces With Clarity & Character"
         description="A studio that combines architecture, interiors, and thoughtful project delivery to create spaces that feel elegant, functional, and authentic."
-        imgSrc={studioImg}
+        imgSrc={siteImages.about.studio}
       />
 
       <section className="py-24 lg:py-36 px-6 lg:px-12" data-gsap-section>
@@ -166,7 +165,7 @@ const About = () => {
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
           <AnimatedSection>
             <div className="group overflow-hidden">
-              <img src={studioImg} alt="Design Atelier workspace" loading="lazy" width={800} height={600} className="image-motion w-full h-full object-cover" />
+              <img src={siteImages.about.studio} alt="Design Atelier workspace" loading="lazy" width={800} height={600} className="image-motion w-full h-full object-cover" />
             </div>
           </AnimatedSection>
           <AnimatedSection delay={200}>
@@ -204,7 +203,7 @@ const About = () => {
         description="We work with thoughtful clients to create architecture and interiors that are grounded in context, function, and long-term value."
         buttonText="Schedule a Consultation"
         buttonLink="/contact"
-        imgSrc={project4}
+        imgSrc={siteImages.projects.architecture.sceneSeven}
       />
     </div>
   );

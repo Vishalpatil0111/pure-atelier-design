@@ -110,38 +110,84 @@
 
   @keyframes image-drift {
     from {
-      transform: scale(1);
+      scale: 1;
     }
     to {
-      transform: scale(1.06);
+      scale: 1.06;
     }
   }
 
-  @keyframes image-drift-hover {
+  @keyframes hero-slide-scale {
     from {
-      transform: scale(1.05);
+      scale: 1.08;
     }
     to {
-      transform: scale(1.1);
+      scale: 1;
     }
-  }
-
-  .image-motion {
-    animation: image-drift 12s ease-in-out infinite alternate;
-    transform-origin: center;
-    will-change: transform;
   }
 
   img {
     animation: image-drift 12s ease-in-out infinite alternate;
     transform-origin: center;
-    will-change: transform;
+    will-change: scale;
   }
 
-  img:hover,
-  .group:hover img {
-    animation-name: image-drift-hover;
-    animation-duration: 4s;
+  nav img {
+    animation: none;
+    scale: 1;
+  }
+
+  .image-motion {
+    animation: image-drift 12s ease-in-out infinite alternate;
+    transform-origin: center;
+    will-change: scale;
+  }
+
+  .hero-slide-motion {
+    animation: hero-slide-scale 6s ease-out forwards;
+    transform-origin: center;
+    will-change: scale;
+  }
+
+  .home-hover-image {
+    scale: 1;
+    transform-origin: center;
+    transition: scale 1200ms cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: scale;
+  }
+
+  .group:hover .home-hover-image {
+    scale: 1.09;
+  }
+
+  .site-scroll-reveal {
+    opacity: 0;
+    translate: 0 28px;
+    transition:
+      opacity 850ms ease,
+      translate 850ms cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: var(--reveal-delay, 0ms);
+    will-change: opacity, translate;
+  }
+
+  .site-scroll-reveal-visible {
+    opacity: 1;
+    translate: 0 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    img,
+    .image-motion,
+    .hero-slide-motion {
+      animation: none;
+      scale: 1;
+    }
+
+    .site-scroll-reveal {
+      opacity: 1;
+      translate: 0 0;
+      transition: none;
+    }
   }
 }
 

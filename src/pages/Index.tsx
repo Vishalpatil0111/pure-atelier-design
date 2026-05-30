@@ -5,27 +5,22 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowRight } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
 import PageCta from "@/components/PageCta";
-import heroImg from "@/assets/hero-architecture.jpg";
-import project1 from "@/assets/project-1.jpg";
-import project2 from "@/assets/project-2.jpg";
-import project3 from "@/assets/project-3.jpg";
-import project4 from "@/assets/project-4.jpg";
-import aboutStudio from "@/assets/about-studio.jpg";
+import { siteImages } from "@/lib/siteImages";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const slides = [
-  { img: heroImg, alt: "Modern architectural interior" },
-  { img: project1, alt: "Contemporary villa project" },
-  { img: project2, alt: "Refined interior design" },
-  { img: project3, alt: "Turnkey hospitality space" },
+  ...siteImages.home.slides.map((img, index) => ({
+    img,
+    alt: `The Design Atelier slider image ${index + 1}`,
+  })),
 ];
 
 const projects = [
-  { img: project1, title: "Villa Serene", category: "Residential", tall: true },
-  { img: project2, title: "The Calm Interior", category: "Interiors", tall: false },
-  { img: project3, title: "Culinary Space", category: "Turnkey", tall: false },
-  { img: project4, title: "Forest Retreat", category: "Architecture", tall: true },
+  { img: siteImages.home.highlighted.balajiAngan, title: "Balaji Angan", category: "Residential", tall: true },
+  { img: siteImages.home.highlighted.cambridgeSchool, title: "Cambridge School", category: "Institutional", tall: false },
+  { img: siteImages.home.highlighted.livingRoom, title: "Warm Residential Interior", category: "Interiors", tall: false },
+  { img: siteImages.home.highlighted.balajiVihar, title: "Balaji Vihar", category: "Architecture", tall: true },
 ];
 
 const services = [
@@ -108,8 +103,10 @@ const Index = () => {
                 key={index}
                 src={slide.img}
                 alt={slide.alt}
+                loading="lazy"
+                data-no-scroll-reveal
                 className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
-                  index === activeSlide ? "opacity-100" : "opacity-0"
+                  index === activeSlide ? "hero-slide-motion opacity-100" : "opacity-0"
                 }`}
               />
             ))}
@@ -188,7 +185,7 @@ const Index = () => {
                       src={p.img}
                       alt={p.title}
                       loading="lazy"
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      className="home-hover-image w-full h-full object-cover"
                     />
                     <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/20 transition-colors duration-500" />
                     <div className="absolute bottom-0 left-0 right-0 p-6 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
@@ -252,8 +249,8 @@ const Index = () => {
           </div>
         </AnimatedSection>
         <AnimatedSection delay={200}>
-          <div className="aspect-[4/3] overflow-hidden" data-home-image>
-            <img src={aboutStudio} alt="Design Atelier studio" loading="lazy" width={800} height={600} className="w-full h-full object-cover" />
+          <div className="group aspect-[4/3] overflow-hidden" data-home-image>
+            <img src={siteImages.about.studio} alt="Design Atelier studio" loading="lazy" width={800} height={600} className="home-hover-image w-full h-full object-cover" />
           </div>
         </AnimatedSection>
       </div>
@@ -279,10 +276,16 @@ const Index = () => {
         <div className="mt-16 grid gap-8 lg:grid-cols-[0.8fr,1.2fr] lg:items-stretch">
           <AnimatedSection delay={100}>
             <div className="grid h-full min-h-[32rem] grid-rows-[1.2fr,0.8fr] gap-4" data-home-image>
-              <img src={project2} alt="Refined interior palette" loading="lazy" className="h-full w-full object-cover" />
+              <div className="group overflow-hidden">
+                <img src={siteImages.home.highlighted.livingRoomOne} alt="Refined interior palette" loading="lazy" className="home-hover-image h-full w-full object-cover" />
+              </div>
               <div className="grid grid-cols-2 gap-4">
-                <img src={project1} alt="Residential architecture" loading="lazy" className="h-full w-full object-cover" />
-                <img src={project3} alt="Hospitality space" loading="lazy" className="h-full w-full object-cover" />
+                <div className="group overflow-hidden">
+                  <img src={siteImages.home.highlighted.balajiAngan} alt="Residential architecture" loading="lazy" className="home-hover-image h-full w-full object-cover" />
+                </div>
+                <div className="group overflow-hidden">
+                  <img src={siteImages.home.highlighted.livingRoomTwo} alt="Interior project detail" loading="lazy" className="home-hover-image h-full w-full object-cover" />
+                </div>
               </div>
             </div>
           </AnimatedSection>
@@ -351,7 +354,7 @@ const Index = () => {
       description="Let’s create a space that is both beautiful and built to last, with purpose-driven design and careful execution."
       buttonText="Schedule a Consultation"
       buttonLink="/contact"
-      imgSrc={aboutStudio}
+      imgSrc={siteImages.about.studio}
     />
   </div>
   );

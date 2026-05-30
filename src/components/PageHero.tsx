@@ -12,7 +12,7 @@ interface PageHeroProps {
 const PageHero = ({ label, title, description, imgSrc, children }: PageHeroProps) => (
   <section className="relative overflow-hidden">
     <div className="absolute inset-0">
-      <img src={imgSrc} alt={title} className="w-full h-full object-cover" />
+      <img src={imgSrc} alt={title} loading="lazy" className="w-full h-full object-cover" />
       <div className="absolute inset-0 bg-black/60" />
     </div>
 

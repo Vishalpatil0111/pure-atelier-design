@@ -1,19 +1,14 @@
-import project1 from "@/assets/project-1.jpg";
-import project2 from "@/assets/project-2.jpg";
-import project3 from "@/assets/project-3.jpg";
-import project4 from "@/assets/project-4.jpg";
-import studioImg from "@/assets/about-studio.jpg";
-import heroImg from "@/assets/hero-architecture.jpg";
+import { siteImages } from "@/lib/siteImages";
 
 const sectors = [
-  { title: "Residential Homes", imgSrc: project1 },
-  { title: "Commercial Spaces", imgSrc: heroImg },
-  { title: "Hospitality Projects", imgSrc: project3 },
-  { title: "Healthcare Facilities", imgSrc: studioImg },
-  { title: "Educational Institutions", imgSrc: project2 },
-  { title: "Recreational Spaces", imgSrc: project4 },
-  { title: "Mixed-Use Developments", imgSrc: heroImg },
-  { title: "Restoration & Renovation Projects", imgSrc: studioImg },
+  { title: "Residential Homes", imgSrc: siteImages.home.highlighted.livingRoom },
+  { title: "Commercial Spaces", imgSrc: siteImages.projects.turnkey.interiorTwo },
+  { title: "Hospitality Projects", imgSrc: siteImages.projects.turnkey.interiorThree },
+  { title: "Healthcare Facilities", imgSrc: siteImages.projects.architecture.balajiVihar },
+  { title: "Educational Institutions", imgSrc: siteImages.projects.architecture.cambridgeSchool },
+  { title: "Recreational Spaces", imgSrc: siteImages.projects.architecture.sceneSeven },
+  { title: "Mixed-Use Developments", imgSrc: siteImages.projects.architecture.exteriorOne },
+  { title: "Restoration & Renovation Projects", imgSrc: siteImages.projects.turnkey.interiorFive },
 ];
 
 const WorkInShowcase = () => (

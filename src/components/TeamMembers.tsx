@@ -1,7 +1,6 @@
 import AnimatedSection from "@/components/AnimatedSection";
 import founderImg from "@/assets/founder.jpg";
-import project2 from "@/assets/project-2.jpg";
-import project3 from "@/assets/project-3.jpg";
+import { siteImages } from "@/lib/siteImages";
 
 const teamMembers = [
   {
@@ -14,13 +13,13 @@ const teamMembers = [
     name: "Nikita Sharma",
     role: "Senior Interior Designer",
     description: "Shapes thoughtful interiors with refined material palettes, spatial flow, and user comfort.",
-    imgSrc: project2,
+    imgSrc: siteImages.home.highlighted.livingRoomOne,
   },
   {
     name: "Rahul Deshmukh",
     role: "Project Manager",
     description: "Coordinates documentation, consultants, and site delivery to ensure timelines and quality.",
-    imgSrc: project3,
+    imgSrc: siteImages.projects.architecture.balajiAngan,
   },
 ];
 
